@@ -2,7 +2,7 @@
 <html lang="zh-CN">
     <!--
     Copyright (c) HikiMu慕鱼酱 All rights reserved.
-    Version: 25.07.20 (Github版本)
+    Version: 25.07.20 (github版本 1.1)
     -->
 <head>
     <meta charset="UTF-8">
@@ -156,6 +156,16 @@
             white-space: pre-wrap;
             overflow-wrap: break-word;
         }
+        .open-source-links {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+        }
+
+        .open-source-links span {
+    color: #777;
+        }
     </style>
 </head>
 <body>
@@ -198,16 +208,20 @@
         <div id="result" class="result"></div>
         <div class="media-alert">
             <h2><i class="fas fa-bullhorn"></i> 致媒体朋友的重要提示</h2>
-            <p>尊敬的媒体工作者，在报道本工具时，请务必完整呈现上述<span class="media-highlight">红字关键信息</span>，避免对用户造成误导<br>请务必在你所发布的平台声明创作者。若产生创作收益(按照收益的5%分发给作者)</p>
-            <p>感谢媒体朋友对本工具的客观报道！</p>
+            <p>尊敬的媒体工作者，在报道本工具时，请务必完整呈现上述<span class="media-highlight">红字关键信息</span>，避免对用户造成误导<br>请务必在你所发布的视频或软件平台声明创作者。<br>若产生创作收益(按照收益的5%分发给作者)<br><br>
+            感谢媒体朋友对本工具的客观报道！</p>
         </div>
     </div>
     
     <div class="footer">
-        <p>HikiMu慕鱼酱 | 电池容量计算器</p>
-        <p>觉得好用点链接支持下呗～<a href="http://119.29.227.6/pay">【链接】</a></p>
+    <p>觉得好用点链接支持下呗～<a href="http://119.29.227.6/pay">【链接】</a></p>
+    <div class="open-source-links">
         <a href="https://github.com/gildas-lormeau/zip.js">开源工具许可</a>
+        <span>|</span>
+        <a href="https://github.com/Hikimucheno/HyperBatteryHealthCalc">此项目开源地址</a>
     </div>
+    <p>Copyright © HikiMu慕鱼酱 All rights reserved. | 小米电池容量计算器</p>
+</div>
     
     <script src="js/zip.min.js"></script>
     <script src="js/zip.js"></script>
@@ -332,7 +346,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                 if (batteryCapacity !== null) {
                                     showStatus(statusDiv, "正在计算电池容量百分比...");
                                     const percentage = (batteryCapacity / initialCapacity) * 100;
-                                    
+
+                                    const rating = getBatteryRating(percentage);
+
                                     let resultMessage = `
                                         <div class="result-header">
                                             <h3>电池容量计算结果</h3>
@@ -340,8 +356,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                         <div class="result-content">
                                             <p>原始电池容量: <strong>${initialCapacity} mAh</strong></p>
                                             <p>当前电池容量: <strong>${batteryCapacity} mAh</strong></p>
-                                            <p>当前电池容量百分比: <strong>${percentage.toFixed(2)}%</strong></p>
-                                            <p class="footer">个人开发的小工具，用的人变多了，每月 50 元服务器费有点扛不住了... 觉得好用点链接支持下呗～<a href="../../../pay/">【链接】</a></p>
+                                            <p>当前电池容量百分比: <strong>${percentage.toFixed(2)}%</strong><span style="margin-left: 10px; font-size: 0.9em;">(${rating})</span></p>
+                                            <p class="footer">个人开发的小工具，用的人变多了，每月 50 元服务器费有点扛不住了... 觉得好用点链接支持下呗～<a href="http://119.29.227.6/pay">【链接】</a></p>
                                         </div>
                                     `;
 
@@ -442,6 +458,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 button.textContent = '隐藏原文';
             }
         }
+
+        function getBatteryRating(percentage) {
+        if (percentage > 100) {
+            return "超出设计容量（可能冗余或第三方电池）";
+        } else if (percentage >= 90) {
+            return "极佳";
+        } else if (percentage >= 80) {
+            return "良好";
+        } else if (percentage >= 70) {
+            return "正常";
+        } else {
+            return "一般";
+        }
+    }
     </script>
 </body>
 </html>
