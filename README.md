@@ -2,7 +2,7 @@
 
 一款用于解析ZIP文件中电池数据，计算小米设备当前电池容量百分比的工具。
 
-本项目链接 >>> http://119.29.227.6/blog/content/Survey_on_Remaining_Battery_Capacity_of_Xiaomi_Mobile&Tablet/onlineweb.html
+本项目链接 >>> [HikiMu网站](https://hikimucheno.github.io/25.04.01.html) 或 [github.io](https://hikimucheno.github.io/HyperBatteryHealthCalc/onlineweb.html)
 
 ## 概述
 本工具专为运行 HyperOS/MIUI 系统的小米手机和平板设计，通过解析设备导出的系统诊断文件，结合用户输入的初始电池容量，估算当前电池容量百分比。所有分析过程均在浏览器本地完成，数据不会上传至任何服务器，保障用户信息安全。
@@ -31,14 +31,14 @@
 
 ## 常见问题解答
 
-# 为什么上传文件后没有反应？​
+### 为什么上传文件后没有反应？​
 - 可能是 ZIP 文件损坏，请重新导出系统诊断文件​
 - 浏览器兼容性问题，建议使用 Chrome、Edge 等主流浏览器​
 
-# 初始电池容量在哪里查询？​
+### 初始电池容量在哪里查询？​
 - 可在设备的参数页面查询​
   
-# 计算结果与实际感受差距较大怎么办？​
+### 计算结果与实际感受差距较大怎么办？​
 - 建议在不同电量状态下多次测试，取平均值作为参考​
 - 检查是否在获取诊断文件过程中操作有误​
 - 尝试更新设备系统后重新导出文件计算
